@@ -1,11 +1,11 @@
 package com.mario.auth.domain
 
+import com.mario.auth.repository.BaseTime
 import jakarta.persistence.*
-import java.util.*
 
 @Entity
 @Table(name = "users")
-data class User (
+class User (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -18,10 +18,4 @@ data class User (
 
     @Column(nullable = false)
     val name: String,
-
-    @Column(nullable = false)
-    val createdDate: Date = Date(),
-
-    @Column(nullable = false)
-    val updatedDate: Date = Date()
-)
+): BaseTime()
