@@ -1,8 +1,8 @@
 package com.mario.auth.service
 
 import com.mario.auth.dto.SignupRequestDto
-import com.mario.auth.exception.UserAlreadyExistsException
 import com.mario.auth.domain.User
+import com.mario.auth.exception.UserAlreadyExistsException
 import com.mario.auth.repository.UserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -18,9 +18,9 @@ class AuthService(
         }
 
         val user = User(
-            name = signupRequest.username,
             email = signupRequest.email,
-            password = passwordEncoder.encode(signupRequest.password)
+            password = passwordEncoder.encode(signupRequest.password),
+            name = signupRequest.name,
         )
 
         userRepository.save(user)
