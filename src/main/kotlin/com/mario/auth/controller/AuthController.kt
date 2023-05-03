@@ -6,18 +6,18 @@ import com.mario.auth.service.AuthService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
-@Controller
-@RequestMapping("/auth")
+@RestController
+@RequestMapping("/api/auth")
 class AuthController(
     private val authService: AuthService
 ) {
     @PostMapping("/signup")
-    fun signup(@RequestBody @Valid signupRequest: SignupRequestDto): ResponseEntity<Any> {
+    fun signup(@Valid @RequestBody signupRequest: SignupRequestDto): ResponseEntity<Any> {
         return try {
             authService.signup(signupRequest)
             ResponseEntity.ok().build()
