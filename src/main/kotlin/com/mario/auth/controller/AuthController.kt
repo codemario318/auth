@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController
 @RequestMapping("/api/auth")
-class AuthController(
+@RestController
+class AuthController (
     private val authService: AuthService
 ) {
     @PostMapping("/signup")
-    fun signup(@Valid @RequestBody signupRequest: SignupRequestDto): ResponseEntity<Any> {
+    fun signup(@RequestBody @Valid signupRequest: SignupRequestDto): ResponseEntity<Any> {
         return try {
             authService.signup(signupRequest)
             ResponseEntity.ok().build()
